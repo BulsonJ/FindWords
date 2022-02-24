@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{3CD9030A-2F3A-42EE-A5A4-8D987FCCEB63}</ProjectGuid>
-    <RootNamespace>ActivisionChallenge</RootNamespace>
+    <RootNamespace>FindWords</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>find_words</ProjectName>
   </PropertyGroup>
