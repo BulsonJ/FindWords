@@ -3,13 +3,13 @@
 #include <fstream>
 #include <exception>
 
-
 LetterWheels::LetterWheels(const std::string& wheelFile, const Dictionary& dictionary) throw (std::invalid_argument) : dict(dictionary) {
 	std::ifstream wheel_file;
 	wheel_file.open(wheelFile);
 
-	if (wheel_file.fail())
+	if (wheel_file.fail()) {
 		throw std::invalid_argument("no wheel file available: " + wheelFile);
+	}
 
 	std::string line;
 	std::getline(wheel_file, line);
@@ -24,8 +24,9 @@ LetterWheels::LetterWheels(const std::string& wheelFile, const Dictionary& dicti
 		wheels.emplace_back(single_wheel);
 	}
 
-	if (wheels.size() == 0)
+	if (wheels.size() == 0) {
 		throw std::invalid_argument("no wheels in file: " + wheelFile);
+	}
 }
 
 void LetterWheels::FindWordsFromWheel(int wheel_index) {
@@ -51,8 +52,11 @@ void LetterWheels::FindWordsFromWheel(int wheel_index) {
 }
 
 std::vector<std::string> LetterWheels::FindWords() {
-	finalWords.clear();
-	for (int i = 0; i <= wheels.size() - 2; i++) {
+	if (finalWords.size() > 0) {
+		finalWords.clear();
+	}
+
+	for (int i = 0; i <= wheels.size() - s_MinWordSize; i++) {
 		currentCombination.clear();
 		FindWordsFromWheel(i);
 	}

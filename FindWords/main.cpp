@@ -7,8 +7,6 @@
 #include "Dictionary.h"
 #include "LetterWheels.h"
 
-
-
 int main(int argc, char* argv[]) {
 
 	if (argc != 3) {
@@ -17,6 +15,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	// Load files and generate all possible words
+
 	std::unique_ptr<Dictionary> dict;
 	auto dictionaryLoadStart = std::chrono::high_resolution_clock::now();
 	try {

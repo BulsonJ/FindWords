@@ -7,8 +7,9 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 	std::ifstream english_dictionary;
 	english_dictionary.open(filename);
 
-	if (english_dictionary.fail())
+	if (english_dictionary.fail()) {
 		throw std::invalid_argument("no dictionary file available: " + filename);
+	}
 
 	root = std::make_unique<TrieNode>();
 
@@ -17,8 +18,9 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 		trie_insert(text);
 	}
 
-	if (root == nullptr)
+	if (root == nullptr) {
 		throw std::invalid_argument("no words in dictionary: " + filename);
+	}
 }
 
 bool Dictionary::CheckWordsCouldExist(const std::string& word) const {
@@ -64,7 +66,7 @@ bool Dictionary::trie_prefix(const std::string& word) const {
 	}
 
 	// Check if there are any nodes attached to last node of word
-	for (int i = 0; i < s_Alphabet; i++) {
+	for (int i = 0; i < s_AlphabetSize; i++) {
 		if (current->children[i] != nullptr) {
 			return true;
 		}

@@ -7,7 +7,6 @@ class LetterWheels
 {
 public:
 	LetterWheels(const std::string& wheelFile, const Dictionary& dictionary) throw ();
-	~LetterWheels() {};
 
 	std::vector<std::string> FindWords();
 protected:
@@ -18,7 +17,6 @@ protected:
 
 	std::string currentCombination;
 	std::vector<std::string> finalWords;
-
 
 	void FindWordsFromWheel(int wheel_index);
 };
