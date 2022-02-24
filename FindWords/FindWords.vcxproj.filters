@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="LetterWheels.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="LetterWheels.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dictionary.txt">
+      <Filter>TextFiles</Filter>
+    </Text>
+    <Text Include="wheels.txt">
+      <Filter>TextFiles</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TextFiles">
+      <UniqueIdentifier>{3d7f9e78-3006-4117-96b5-83027fb22ae5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
