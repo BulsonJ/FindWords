@@ -15,11 +15,10 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 
 	std::string text;
 	while (std::getline(english_dictionary, text)) {
-		bool contains_non_alpha = text.find_first_not_of("abcdefghijklmnopqrstuvwxyz") != std::string::npos;
-		if (contains_non_alpha) {
+		if (CheckValidWord(text)) {
 			throw std::invalid_argument("non alpha characters in dictionary file");
 		}
-		trie_insert(text);
+		TrieInsert(text);
 	}
 
 	if (root == nullptr) {
@@ -28,14 +27,28 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 }
 
 bool Dictionary::CheckWordsCouldExist(const std::string& word) const {
-	return trie_prefix(word);
+	return TriePrefix(word);
 }
 
 bool Dictionary::CheckWordExists(const std::string& word) const {
-	return trie_lookup(word);
+	return TrieLookup(word);
 }
 
-void Dictionary::trie_insert(const std::string& word) {
+bool Dictionary::CheckValidWord(const std::string& word) {
+	// Not most robust string checking, but placed into function to allow for easier refactoring.
+	return word.find_first_not_of("abcdefghijklmnopqrstuvwxyz") != std::string::npos;
+}
+
+/*
+Reference for Trie structure:
+https://www.techiedelight.com/cpp-implementation-trie-data-structure/
+
+Trie structure was used to allow the program to quickly determine if a word can possibly exist.
+Could be moved to a more generic Trie class/struct in the future.
+*/
+
+
+void Dictionary::TrieInsert(const std::string& word) {
 	TrieNode* current = root.get();
 	for (int i = 0; i < word.length(); i++) {
 		if (current->children[word[i] - s_AlphabetStart].get() == nullptr) {
@@ -46,7 +59,7 @@ void Dictionary::trie_insert(const std::string& word) {
 	current->end_of_word = true;
 }
 
-bool Dictionary::trie_lookup(const std::string& word) const {
+bool Dictionary::TrieLookup(const std::string& word) const {
 	TrieNode* current = root.get();
 	for (int i = 0; i < word.length(); i++)
 	{
@@ -58,9 +71,9 @@ bool Dictionary::trie_lookup(const std::string& word) const {
 	return current->end_of_word;
 }
 
-bool Dictionary::trie_prefix(const std::string& word) const {
+bool Dictionary::TriePrefix(const std::string& word) const {
 	TrieNode* current = root.get();
-	// For each letter, iterate through the trie
+
 	for (int i = 0; i < word.length(); i++)
 	{
 		if (current->children[word[i] - s_AlphabetStart] == nullptr) {
@@ -69,7 +82,6 @@ bool Dictionary::trie_prefix(const std::string& word) const {
 		current = current->children[word[i] - s_AlphabetStart].get();
 	}
 
-	// Check if there are any nodes attached to last node of word
 	for (int i = 0; i < s_AlphabetSize; i++) {
 		if (current->children[i] != nullptr) {
 			return true;

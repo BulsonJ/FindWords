@@ -24,9 +24,11 @@ protected:
 
 	std::unique_ptr<TrieNode> root;
 
-	void trie_insert(const std::string& word);
-	bool trie_lookup(const std::string& word) const;
-	bool trie_prefix(const std::string& word) const;
+	static bool CheckValidWord(const std::string& word);
+
+	void TrieInsert(const std::string& word);
+	bool TrieLookup(const std::string& word) const;
+	bool TriePrefix(const std::string& word) const;
 };
 
 

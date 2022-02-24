@@ -29,6 +29,12 @@ LetterWheels::LetterWheels(const std::string& wheelFile, const Dictionary& dicti
 	}
 }
 
+/*
+For cleaner method function, I decided to store the currentCombination and
+finalWords vectors as part of the class. Another implementation would be to
+pass by reference into each method call.
+*/
+
 void LetterWheels::FindWordsFromWheel(int wheel_index) {
 
 	if (wheel_index == wheels.size()) {
@@ -56,9 +62,10 @@ std::vector<std::string> LetterWheels::FindWords() {
 		finalWords.clear();
 	}
 
+	currentCombination.clear();
 	for (int i = 0; i <= wheels.size() - s_MinWordSize; i++) {
-		currentCombination.clear();
 		FindWordsFromWheel(i);
+		currentCombination.clear();
 	}
 
 	return finalWords;
