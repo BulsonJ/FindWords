@@ -18,7 +18,7 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 		if (CheckValidWord(text)) {
 			throw std::invalid_argument("non alpha characters in dictionary file");
 		}
-		root->Insert(text);
+		root->Insert(root.get(), text);
 	}
 
 	if (root == nullptr) {

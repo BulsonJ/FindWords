@@ -21,16 +21,15 @@ class Trie
 {
 public:
 
-	void Insert(const std::string& word) {
-		Trie* root = this;
-		Trie** current = &root;
+	void Insert(Trie* root, const std::string& word) {
+		Trie* current = root;
 		for (int i = 0; i < word.length(); i++) {
-			if ((*current)->children[word[i] - alphabetStart].get() == nullptr) {
-				(*current)->children[word[i] - alphabetStart] = std::make_unique<Trie>();
+			if (current->children[word[i] - alphabetStart].get() == nullptr) {
+				current->children[word[i] - alphabetStart] = std::make_unique<Trie>();
 			}
-			(*current) = (*current)->children[word[i] - alphabetStart].get();
+			current = current->children[word[i] - alphabetStart].get();
 		}
-		(*current)->end_of_word = true;
+		current->end_of_word = true;
 	}
 
 	bool Lookup(const std::string& word) const {
