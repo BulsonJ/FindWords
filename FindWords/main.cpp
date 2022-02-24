@@ -10,7 +10,7 @@
 int main(int argc, char* argv[]) {
 
 	if (argc != 3) {
-		std::cout << "Usage: find_words.exe wheels.txt dictionary.txt";
+		std::cout << "No wheel and/or dictionary files to load";
 		exit(1);
 	}
 
