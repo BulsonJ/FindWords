@@ -4,10 +4,12 @@
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="LetterWheels.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Trie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="LetterWheels.h" />
+    <ClInclude Include="Trie.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dictionary.txt">
