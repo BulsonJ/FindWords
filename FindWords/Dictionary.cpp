@@ -15,6 +15,10 @@ Dictionary::Dictionary(const std::string& filename) throw (std::invalid_argument
 
 	std::string text;
 	while (std::getline(english_dictionary, text)) {
+		bool contains_non_alpha = text.find_first_not_of("abcdefghijklmnopqrstuvwxyz") != std::string::npos;
+		if (contains_non_alpha) {
+			throw std::invalid_argument("non alpha characters in dictionary file");
+		}
 		trie_insert(text);
 	}
 

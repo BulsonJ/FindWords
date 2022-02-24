@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
 	}
 	catch (std::invalid_argument &e) {
 		std::cout << e.what() << std::endl;
+		exit(1);
 	}
 	auto dictionaryLoadEnd = std::chrono::high_resolution_clock::now();
 
@@ -33,6 +34,7 @@ int main(int argc, char* argv[]) {
 	}
 	catch (std::invalid_argument& e) {
 		std::cout << e.what() << std::endl;
+		exit(1);
 	}
 	auto wheelLoadEnd = std::chrono::high_resolution_clock::now();
 
