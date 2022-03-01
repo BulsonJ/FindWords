@@ -10,7 +10,8 @@
 int main(int argc, char* argv[]) {
 
 	if (argc != 3) {
-		std::cout << "No wheel and/or dictionary files to load";
+		std::cout << "No wheel and/or dictionary files specified" << std::endl;
+		std::cout << "Correct usage: find_words.exe wheels.txt dictionary.txt" << std::endl;
 		exit(1);
 	}
 
@@ -57,7 +58,7 @@ int main(int argc, char* argv[]) {
 		std::cout << label << time.count() << "ms" << std::endl; 
 	};
 
-	textOutput("Time to load dictionary:", dictionaryLoadEnd - dictionaryLoadStart);
+	textOutput("Time to load dictionary & put into trie:", dictionaryLoadEnd - dictionaryLoadStart);
 	textOutput("Time to load wheels:", wheelLoadEnd - wheelLoadStart);
 	textOutput("Time to find words:", wordGenEnd - wordGenStart);
 	textOutput("Total time:", wordGenEnd - dictionaryLoadStart);
